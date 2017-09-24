@@ -1,5 +1,5 @@
 {
-  "name": "wielski/coinhive",
+  "name": "wielski-coinhive",
   "version": "0.1.1",
   "description": "A Node.js app using Express 4",
   "engines": {
