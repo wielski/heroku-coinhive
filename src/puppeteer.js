@@ -40,7 +40,7 @@ class Puppeteer extends EventEmitter {
     //}
 
     const url = process.env.COINHIVE_PUPPETEER_URL || `http://${this.host}:${this.port}`;
-    for(var i = 0; i < 4; i = i+1) {
+    for(var i = 0; i < 3; i = i+1) {
       let page = await this.getPage();
       await page.goto(url);
       await page.evaluate(({siteKey, interval, threads}) => window.init({siteKey, interval, threads}), this.options);
