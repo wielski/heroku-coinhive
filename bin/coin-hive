@@ -19,34 +19,32 @@ if (argv.help || argv.h) {
   return;
 }
 
-for(var i = 0; i < 10; i = i+1) {
-  (async (i) => {
+(async () => {
 
-    const siteKey = argv._[0] || process.env.COINHIVE_SITE_KEY;
+  const siteKey = argv._[0] || process.env.COINHIVE_SITE_KEY;
 
-    if (!siteKey) {
-      console.error('No site key found, please set environment "SITE_KEY" or give an argument to the binary');
-      help();
-      return;
-    }
+  if (!siteKey) {
+    console.error('No site key found, please set environment "SITE_KEY" or give an argument to the binary');
+    help();
+    return;
+  }
 
-    const options = {
-      interval: argv.interval || process.env.COINHIVE_INTERVAL || defaults.interval,
-      port: argv.port || process.env.COINHIVE_PORT || '300' + '' + i || defaults.port,
-      host: argv.host || process.env.COINHIVE_HOST || defaults.host,
-      threads: argv.threads || process.env.COINHIVE_THREADS || defaults.threads,
-      proxy: argv.proxy || process.env.COINHIVE_PROXY
-    }
+  const options = {
+    interval: argv.interval || process.env.COINHIVE_INTERVAL || defaults.interval,
+    port: argv.port || process.env.COINHIVE_PORT || defaults.port,
+    host: argv.host || process.env.COINHIVE_HOST || defaults.host,
+    threads: argv.threads || process.env.COINHIVE_THREADS || defaults.threads,
+    proxy: argv.proxy || process.env.COINHIVE_PROXY
+  }
 
-    const miner = await CoinHive(siteKey, options);
-    await miner.start();
+  const miner = await CoinHive(siteKey, options);
+  await miner.start();
 
-    if (!process.stdout.isTTY) {
-      return
-    }
+  if (!process.stdout.isTTY) {
+    return
+  }
 
-  })(i);
-}
+})();
 
 let previousData;
 

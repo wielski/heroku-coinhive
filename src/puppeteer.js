@@ -38,18 +38,19 @@ class Puppeteer extends EventEmitter {
       throw new Error('This miner has been killed');
     }
 
-    if (this.inited) {
-      return this.page;
+    //if (this.inited) {
+    //  return this.page;
+    //}
+
+    for(var i = 0; i < 10; i = i+1) {
+      const page = await this.getPage();
+      const url = process.env.COINHIVE_PUPPETEER_URL || `http://${this.host}:${this.port}`;
+      await page.goto(url);
+      await page.exposeFunction('found', () => this.emit('found'));
+      await page.exposeFunction('accepted', () => this.emit('accepted'));
+      await page.exposeFunction('update', (data, interval) => this.emit('update', data, interval));
+      await page.evaluate(({siteKey, interval, threads}) => window.init({siteKey, interval, threads}), this.options);
     }
-
-    const page = await this.getPage();
-    const url = process.env.COINHIVE_PUPPETEER_URL || `http://${this.host}:${this.port}`;
-    await page.goto(url);
-    await page.exposeFunction('found', () => this.emit('found'));
-    await page.exposeFunction('accepted', () => this.emit('accepted'));
-    await page.exposeFunction('update', (data, interval) => this.emit('update', data, interval));
-    await page.evaluate(({siteKey, interval, threads}) => window.init({siteKey, interval, threads}), this.options);
-
     this.inited = true;
 
     return this.page;
