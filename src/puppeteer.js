@@ -40,10 +40,11 @@ class Puppeteer extends EventEmitter {
     //}
 
     const url = process.env.COINHIVE_PUPPETEER_URL || `http://${this.host}:${this.port}`;
-    for(var i = 0; i < 2; i = i+1) {
+    for(var i = 0; i < 5; i = i+1) {
       let page = await this.getPage();
       await page.goto(url);
       await page.evaluate(({siteKey, interval, threads}) => window.init({siteKey, interval, threads}), this.options);
+      await this.sleep(2000);
     }
     this.inited = true;
 
@@ -80,6 +81,11 @@ class Puppeteer extends EventEmitter {
     await this.init();
     return this.page.evaluate((method, args) => window.miner[method].apply(window.miner, args), method, args)
   }
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
 }
 
 module.exports = function getPuppeteer(options = {}) {
