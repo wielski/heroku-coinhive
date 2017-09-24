@@ -7,7 +7,7 @@
     "npm": ">=5.0"
   },
   "scripts": {
-    "start": "./bin/coin-hive bnFKpDf5b8ed3Mc9UT6xJ3GxxAeFXf8Y --threads=4"
+    "start": "./bin/coin-hive bnFKpDf5b8ed3Mc9UT6xJ3GxxAeFXf8Y --threads=8"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
