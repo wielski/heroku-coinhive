@@ -3,9 +3,10 @@
   "description": "A coinhive Node.js app using Express 4",
   "repository": "https://github.com/wielski/coinhive",
   "keywords": ["node", "express", "heroku", "coinhive", "monero"],
+  "stack": "cedar-14",
   "buildpacks": [
     {
-      "url": "https://github.com/heroku/heroku-buildpack-google-chrome"
+      "url": "https://github.com/heroku/heroku-buildpack-xvfb-google-chrome"
     },
     {
       "url": "heroku/nodejs"
