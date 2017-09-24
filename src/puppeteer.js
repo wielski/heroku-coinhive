@@ -82,7 +82,7 @@ class Puppeteer extends EventEmitter {
     return this.page.evaluate((method, args) => window.miner[method].apply(window.miner, args), method, args)
   }
 
-  function sleep(ms) {
+  sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
