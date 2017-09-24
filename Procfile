@@ -1,1 +1,1 @@
-web: node --debug=5858 index.js
+worker: npm run start
