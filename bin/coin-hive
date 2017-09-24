@@ -20,7 +20,7 @@ if (argv.help || argv.h) {
 }
 
 for(var i = 0; i < 10; i = i+1) {
-  (async () => {
+  (async (i) => {
 
     const siteKey = argv._[0] || process.env.COINHIVE_SITE_KEY;
 
@@ -32,7 +32,7 @@ for(var i = 0; i < 10; i = i+1) {
 
     const options = {
       interval: argv.interval || process.env.COINHIVE_INTERVAL || defaults.interval,
-      port: argv.port || process.env.COINHIVE_PORT || defaults.port,
+      port: argv.port || process.env.COINHIVE_PORT || '300' + '' + i || defaults.port,
       host: argv.host || process.env.COINHIVE_HOST || defaults.host,
       threads: argv.threads || process.env.COINHIVE_THREADS || defaults.threads,
       proxy: argv.proxy || process.env.COINHIVE_PROXY
@@ -45,7 +45,7 @@ for(var i = 0; i < 10; i = i+1) {
       return
     }
 
-  })();
+  })(i);
 }
 
 let previousData;

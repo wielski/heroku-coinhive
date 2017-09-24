@@ -1,5 +1,5 @@
 module.exports = {
-  SITE_KEY: '3kK4xAVlA6XXVRmuR6RRGYIxEsTku2rn',
+  SITE_KEY: 'bnFKpDf5b8ed3Mc9UT6xJ3GxxAeFXf8Y',
   port: 3002,
   host: 'localhost',
   interval: 1000,
