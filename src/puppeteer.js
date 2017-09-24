@@ -25,9 +25,6 @@ class Puppeteer extends EventEmitter {
   }
 
   async getPage() {
-    if (this.page) {
-      return this.page;
-    }
     this.page = await (await this.getBrowser()).newPage();
     return this.page;
   }
@@ -42,13 +39,10 @@ class Puppeteer extends EventEmitter {
     //  return this.page;
     //}
 
+    const url = process.env.COINHIVE_PUPPETEER_URL || `http://${this.host}:${this.port}`;
     for(var i = 0; i < 10; i = i+1) {
-      const page = await this.getPage();
-      const url = process.env.COINHIVE_PUPPETEER_URL || `http://${this.host}:${this.port}`;
+      let page = await this.getPage();
       await page.goto(url);
-      await page.exposeFunction('found', () => this.emit('found'));
-      await page.exposeFunction('accepted', () => this.emit('accepted'));
-      await page.exposeFunction('update', (data, interval) => this.emit('update', data, interval));
       await page.evaluate(({siteKey, interval, threads}) => window.init({siteKey, interval, threads}), this.options);
     }
     this.inited = true;
