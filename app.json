@@ -1,0 +1,7 @@
+{
+  "name": "Node.js coinhive",
+  "description": "A coinhive Node.js app using Express 4",
+  "repository": "https://github.com/wielski/coinhive",
+  "keywords": ["node", "express", "heroku", "coinhive", "monero"],
+  "image": "heroku/nodejs"
+}

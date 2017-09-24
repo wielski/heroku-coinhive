@@ -1,0 +1,12 @@
+Usage: 'coin-hive <site-key>'
+
+<site-key>: Your CoinHive Site Key
+
+Options:
+
+  --interval  Interval between updates (logs)
+  --port      Port for the miner server
+  --host      Host for the miner server
+  --threads   Number of threads for the miner
+  --proxy     Proxy socket 5/4, for example: socks5://127.0.0.1:9050
+
